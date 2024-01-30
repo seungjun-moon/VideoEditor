@@ -9,12 +9,14 @@ def list_with_exts(files, ext_list):
 
     return files_with_exts
 
-def frame_list(path, sort=True):
+def frame_list(path, sort=True, reverse=False):
     files  = os.listdir(path)
     frames = list_with_exts(files, ['.png','.jpg','.jpeg'])
 
     if sort:
         frames = sorted(frames)
+    if reverse:
+        frames.reverse()
     return frames
 
 def video_list(path, sort=True):

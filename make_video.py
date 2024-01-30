@@ -6,9 +6,9 @@ import numpy as np
 
 from utils.common import frame_list, video_list
 
-def make_mp4(load_path, save_path, name='video', fps=30):
+def make_mp4(load_path, save_path, name='video', fps=30, reverse=False):
     frame_array = []
-    for i,file_name in enumerate(frame_list(load_path)):
+    for i,file_name in enumerate(frame_list(load_path, reverse=reverse)):
 
         img = cv2.imread(os.path.join(load_path, file_name))
         height, width, layers = img.shape
@@ -21,10 +21,10 @@ def make_mp4(load_path, save_path, name='video', fps=30):
         out.write(frame_array[i])
     out.release()
 
-def make_gif(load_path, save_path, name='video', fps=30):
+def make_gif(load_path, save_path, name='video', fps=30, reverse=False):
     speed_sec = {'duration':1/fps}
     images=[]
-    for i,file_name in enumerate(frame_list(load_path)):
+    for i,file_name in enumerate(frame_list(load_path, reverse=reverse)):
         file_path = os.path.join(load_path, file_name)
         images.append(imageio.imread(file_path))
         if i > 500:
@@ -40,12 +40,13 @@ if __name__ == "__main__":
     parser.add_argument('--load_path', default='./frames')
     parser.add_argument('--save_path', default='./results')
     parser.add_argument('--fps',       default=60, type=int)
+    parser.add_argument('--reverse',    action='store_true')
     args = parser.parse_args()
 
     logging.basicConfig(level=logging.INFO)
     os.makedirs(args.save_path, exist_ok=True)
 
     if args.ext == 'mp4':
-        make_mp4(args.load_path, args.save_path, 'video', args.fps)
+        make_mp4(args.load_path, args.save_path, 'video', args.fps, args.reverse)
     elif args.ext == 'gif':
-        make_gif(args.load_path, args.save_path, 'video', args.fps)
+        make_gif(args.load_path, args.save_path, 'video', args.fps, args.reverse)

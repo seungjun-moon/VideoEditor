@@ -3,9 +3,11 @@ import cv2
 import logging
 import argparse
 
-def make_frames(video_file, save_path, name=''):
+def make_frames(video_file, save_path, name='', hdr=False):
     vidcap = cv2.VideoCapture(video_file)
     success,image = vidcap.read()
+    if hdr:
+        unchanged_image = cv2.cvtColor(image, cv2.COLOR_BGR2BGRA)
     count = 0
     success = True
     if name == '':
@@ -21,9 +23,10 @@ if __name__ == "__main__":
     parser = argparse.ArgumentParser(description='Generate a video')
     parser.add_argument('--video_file', default='deca.mp4')
     parser.add_argument('--save_path',  default='./frames')
+    parser.add_argument('--hdr',  action='store_true')
     args = parser.parse_args()
 
     logging.basicConfig(level=logging.INFO)
     os.makedirs(args.save_path, exist_ok=True)
 
-    make_frames(args.video_file, args.save_path, name='frame')
+    make_frames(args.video_file, args.save_path, name='frame', hdr=args.hdr)

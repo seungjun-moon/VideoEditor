@@ -5,12 +5,16 @@ import argparse
 import numpy as np
 
 from utils.common import frame_list, video_list
+ 
+# h= 350
+# w= 310
+# size = (400,400) flame mesh cropping
 
-def crop_images(img_path, scale=(1080,1080)):
+def crop_images(img_path, scale=(512,512)):
     img = cv2.imread(img_path)
-    h = 0
-    w = 0
-    size = (4000,4000)
+    h = 200
+    w = 50
+    size = (900,900) # sjmoon1 
 
     cropped_img = img[h:h+size[0],w:w+size[1]]
     img_ = np.zeros((size[0],size[1],3))
