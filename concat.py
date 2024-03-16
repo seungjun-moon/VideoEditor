@@ -2,8 +2,8 @@ import os
 from PIL import Image
 import cv2
 
-path1 = '/Users/moonseungjun/Downloads/epsilon/exps_snapshot/snapshot/male-3-casual/hybrid_pixie/visualization/animate+flame/'
-path2 = '/Users/moonseungjun/Downloads/next3d/video5/frames'
+path1 = './frames'
+path2 = './renders'
 save_path = 'video1_concat'
 
 image_list1 = sorted(os.listdir(path1))
@@ -45,15 +45,17 @@ for el in image_list2:
 
 # print(image_list1)
 
+size=512
+
 for i in range(min(len(image_list1), len(image_list2))):
-	image= Image.new(mode="RGB", size=(512, 256), color=(255, 255, 255))
+	image= Image.new(mode="RGB", size=(size*2, size), color=(255, 255, 255))
 	# image1 = Image.open(os.path.join(path1,image_list1[i])).crop((512,0,1024,512)).resize((256,256))
-	image1 = Image.open(os.path.join(path1,image_list1[i])).crop((0,0,512,512)).resize((256,256))
-	image2 = Image.open(os.path.join(path2,image_list2[i])).resize((256,256))
+	image1 = Image.open(os.path.join(path1,image_list1[i])).crop((0,0,512,512)).resize((size,size))
+	image2 = Image.open(os.path.join(path2,image_list2[i])).resize((size,size))
 
 	image.paste(image1, (0, 0))
-	image.paste(image2, (256, 0))
+	image.paste(image2, (size, 0))
 
-	image.save(os.path.join(save_path, f'{i:05d}.png'))
+	image.save(os.path.join(save_path, '{}.png'.format(str(i).zfill(5))))
 
 make_mp4(save_path)

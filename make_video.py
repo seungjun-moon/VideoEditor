@@ -4,6 +4,7 @@ import logging
 import argparse
 import numpy as np
 
+from pathlib import Path
 from utils.common import frame_list, video_list
 
 def make_mp4(load_path, save_path, name='video', fps=30, reverse=False):
@@ -46,7 +47,9 @@ if __name__ == "__main__":
     logging.basicConfig(level=logging.INFO)
     os.makedirs(args.save_path, exist_ok=True)
 
+    name = Path(args.load_path).stem
+
     if args.ext == 'mp4':
-        make_mp4(args.load_path, args.save_path, 'video', args.fps, args.reverse)
+        make_mp4(args.load_path, args.save_path, name, args.fps, args.reverse)
     elif args.ext == 'gif':
-        make_gif(args.load_path, args.save_path, 'video', args.fps, args.reverse)
+        make_gif(args.load_path, args.save_path, name, args.fps, args.reverse)

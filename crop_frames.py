@@ -12,9 +12,9 @@ from utils.common import frame_list, video_list
 
 def crop_images(img_path, scale=(512,512)):
     img = cv2.imread(img_path)
-    h = 200
-    w = 50
-    size = (900,900) # sjmoon1 
+    h = 150
+    w = 100
+    size = (1000,1000) # sjmoon1 
 
     cropped_img = img[h:h+size[0],w:w+size[1]]
     img_ = np.zeros((size[0],size[1],3))
