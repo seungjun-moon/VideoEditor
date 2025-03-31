@@ -99,8 +99,15 @@ def crop_image(image, scale=(550,802), actor=None):
         # h,w = 200,0
         # size=1000
 
-        h,w = 400,360
-        size= 1500
+        # ratio = 0.75
+        # margin = (1-ratio)/2
+        # h,w = int((802 * margin)//1) ,int((550 * margin)//1)
+        # size= int((550 * ratio)//1)
+
+        # print(h, w, size)
+
+        h,w = 35,110
+        size= 2000
 
 
     s2 = int((size*s)//1)

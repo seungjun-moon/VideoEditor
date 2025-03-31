@@ -39,8 +39,8 @@ if __name__ == "__main__":
     parser = argparse.ArgumentParser(description='Generate a video')
     parser.add_argument('--ext',       default='mp4')
     parser.add_argument('--load_path', default='./frames')
-    parser.add_argument('--save_path', default='./results')
-    parser.add_argument('--fps',       default=60, type=int)
+    parser.add_argument('--save_path', default='.')
+    parser.add_argument('--fps',       default=25, type=float)
     parser.add_argument('--reverse',    action='store_true')
     args = parser.parse_args()
 

@@ -36,7 +36,7 @@ def pad_image_name_in_loop(image_path, start_idx):
 if __name__ == '__main__':
     # Set up command line argument parser
     parser = ArgumentParser(description="Fit formatting before preprocess")
-    parser.add_argument('--image_path', type=str, default="../data/obama")
+    parser.add_argument('--image_path', type=str, default="sjmoon_011_original")
     parser.add_argument('--start_idx', type=int, default=0)
     parser.add_argument('--can_sort', action='store_true')
 
